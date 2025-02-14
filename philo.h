@@ -6,7 +6,7 @@
 /*   By: meid <meid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 14:02:19 by meid              #+#    #+#             */
-/*   Updated: 2025/02/14 20:10:15 by meid             ###   ########.fr       */
+/*   Updated: 2025/02/14 20:18:09 by meid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ typedef struct s_info{
 
 //---------------------------philo--------------------------------//
 
-//-----------error.c-----------//
+//-----------print.c-----------//
 void print_with_color(char *msg, char *color);
 void print_emoji(char *msg);
 void print_info(t_info *info);
-int check_logic_num(int ac, t_info *info);
 
 //-----------parsing.c-----------//
 int check_is_valid(char **av);
+int check_logic_num(int ac, t_info *info);
 
 #endif
