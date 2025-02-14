@@ -1,0 +1,55 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: meid <meid@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/14 14:02:19 by meid              #+#    #+#             */
+/*   Updated: 2025/02/14 20:10:15 by meid             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PHILO_H
+# define PHILO_H
+
+#include "libft/libft.h"
+#include <stdio.h>      // printf
+#include <stdlib.h>     // malloc, free
+#include <string.h>     // memset
+#include <unistd.h>     // write, usleep
+#include <sys/time.h>   // gettimeofday
+#include <pthread.h>    // pthread_create, pthread_detach, pthread_join, 
+// pthread_mutex_init, pthread_mutex_destroy, pthread_mutex_lock, pthread_mutex_unlock
+
+#define GREEN  "\033[0;32m"
+#define BLUE   "\033[0;34m"
+#define YELLOW "\033[0;33m"
+#define RESET  "\033[0m"
+#define NOODLES   "🍜"
+#define FRIES     "🍟"
+#define BURGER    "🍔"
+#define DYING     "💀"
+#define SLEEPY    "😴"
+
+typedef struct s_info{
+    int number_of_philosophers;
+    int time_to_die;
+    int time_to_eat;
+    int time_to_sleep;
+    int number_of_times_each_philosopher_must_eat;
+    int flag_for_arg5;
+}           t_info;
+
+//---------------------------philo--------------------------------//
+
+//-----------error.c-----------//
+void print_with_color(char *msg, char *color);
+void print_emoji(char *msg);
+void print_info(t_info *info);
+int check_logic_num(int ac, t_info *info);
+
+//-----------parsing.c-----------//
+int check_is_valid(char **av);
+
+#endif
