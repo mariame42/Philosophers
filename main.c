@@ -6,7 +6,7 @@
 /*   By: meid <meid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 14:02:01 by meid              #+#    #+#             */
-/*   Updated: 2025/02/14 20:11:57 by meid             ###   ########.fr       */
+/*   Updated: 2025/02/15 07:39:22 by meid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ int main(int ac, char **av)
     print_emoji("eat");
     print_emoji("sleep");
     print_emoji("die");
+    philo(&info);
     
-    // philo(atoi(av[1]), atoi(av[2]), atoi(av[3]), atoi(av[4]));
 }
