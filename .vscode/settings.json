@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "__mutex_base": "c",
+        "__tuple": "c",
+        "array": "c",
+        "philo.h": "c"
+    }
+}

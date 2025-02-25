@@ -71,7 +71,7 @@ BLUE = \033[0;34m
 YELLOW = \033[0;33m
 RESET = \033[0m
 
-SRC = main.c print.c parsing.c
+SRC = main.c print.c parsing.c philo.c clean.c array_create.c
 
 OBJ_DIR = obj
 OBJ_FILES = $(SRC:%.c=$(OBJ_DIR)/%.o)

@@ -6,7 +6,7 @@
 /*   By: meid <meid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:26:17 by meid              #+#    #+#             */
-/*   Updated: 2025/02/15 12:35:00 by meid             ###   ########.fr       */
+/*   Updated: 2025/02/25 19:58:05 by meid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,16 @@ int check_is_valid(char **av)
 int check_logic_num(int ac, t_info *info)
 {
     if (info->number_of_philosophers < 1)
-        return(print_with_color("At least one philosopher must be present at the table", "red"), 1);
+        return(clean_up(info),
+            print_with_color("At least one philosopher must be present at the table", "red"), 1);
     if (info->time_to_die < 0 || info->time_to_sleep < 0 || info->time_to_eat < 0)
-        return(print_with_color("doesn't make sense for the time to be negative", "red"), 1);
+        return(clean_up(info),
+            print_with_color("doesn't make sense for the time to be negative", "red"), 1);
     if (info->time_to_die == 0 || info->time_to_sleep == 0 || info->time_to_eat == 0)
-        return(print_with_color("give me some time", "red"), 1);
+        return(clean_up(info),
+            print_with_color("give me some time", "red"), 1);
     if (ac == 6 && info->number_of_times_each_philosopher_must_eat < 0)
-        return(print_with_color("number_of_times_each_philosopher_must_eat should be a postive num", "red"), 1);
+        return(clean_up(info), 
+            print_with_color("number_of_times_each_philosopher_must_eat should be a postive num", "red"), 1);
     return (0);
 }

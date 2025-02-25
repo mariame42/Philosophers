@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meid <meid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 14:18:26 by meid              #+#    #+#             */
-/*   Updated: 2025/02/14 20:17:43 by meid             ###   ########.fr       */
+/*   Updated: 2025/02/25 18:59:22 by meid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,34 @@ void print_emoji(char *msg)
 void print_info(t_info *info)
 {
     print_with_color("info->number_of_philosophers", "green");
-    print_with_color(ft_itoa(info->number_of_philosophers), "green");
+    char *num = ft_itoa(info->number_of_philosophers);
+    print_with_color(num, "green");
+    free(num);
     print_with_color("info->time_to_die", "green");
-    print_with_color(ft_itoa(info->time_to_die), "green");
+    num = ft_itoa(info->time_to_die);
+    print_with_color(num, "green");
+    free(num);
     print_with_color("info->time_to_eat", "green");
-    print_with_color(ft_itoa(info->time_to_eat), "green");
+    num = ft_itoa(info->time_to_eat);
+    print_with_color(num, "green");
+    free(num);
     print_with_color("info->time_to_sleep", "green");
-    print_with_color(ft_itoa(info->time_to_sleep), "green");
+    num = ft_itoa(info->time_to_sleep);
+    print_with_color(num, "green");
+    free(num);
     if (info->number_of_times_each_philosopher_must_eat != -1)
     {
         print_with_color("info->number_of_times_each_philosopher_must_eat", "green");
-        print_with_color(ft_itoa(info->number_of_times_each_philosopher_must_eat), "green");
+        num = ft_itoa(info->number_of_times_each_philosopher_must_eat);
+        print_with_color(num, "green");
+    }
+}
+
+void print_array(int *array, int i)
+{
+    while(array[i])
+    {
+        printf("array[%d] = %d\n", i, array[i]);
+        i++;
     }
 }
