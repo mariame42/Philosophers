@@ -6,7 +6,7 @@
 /*   By: meid <meid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 10:38:00 by meid              #+#    #+#             */
-/*   Updated: 2025/02/25 20:25:35 by meid             ###   ########.fr       */
+/*   Updated: 2025/03/07 17:14:42 by meid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void *philofunction(void *data)
 {
     t_info *info = (t_info *)data;
-    pthread_mutex_lock(&info->mutex[info->i]);
-    printf("\033[33m philo %d \033[0m", info->i);
-    print_emoji("eat");
+    pthread_mutex_lock(&info->mutex[0]);
+    // printf("%llu", info->first_time);
+    print_philo_status(info->first_time ,info->i, "eat");
     printf("\n");
-    pthread_mutex_unlock(&info->mutex[info->i]);
+    pthread_mutex_unlock(&info->mutex[0]);
     return (info);
 } 
 

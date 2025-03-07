@@ -6,7 +6,7 @@
 /*   By: meid <meid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 14:02:01 by meid              #+#    #+#             */
-/*   Updated: 2025/02/25 20:07:05 by meid             ###   ########.fr       */
+/*   Updated: 2025/03/07 17:05:52 by meid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ t_info fill_some_info(int ac, char **av)
     print_array(i.forks, 0);
     print_array(i.pihlo_id, 0);
     print_array(i.state_tracking, 0);
+    i.philos = philo_struct_array(&i, i.number_of_philosophers, 0);
+    i.first_time = current_time();
     return (i);
     
 }

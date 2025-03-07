@@ -6,7 +6,7 @@
 /*   By: meid <meid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 19:39:42 by meid              #+#    #+#             */
-/*   Updated: 2025/02/25 19:39:53 by meid             ###   ########.fr       */
+/*   Updated: 2025/03/07 15:23:50 by meid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,21 @@ pthread_mutex_t *make_mutex_array(int philo_num, int i)
         i++;
     }
     return (mutex);
+}
+
+t_philo *philo_struct_array(t_info *info, int num_of_philos, int i)
+{
+    t_philo *philos = malloc(sizeof(t_philo) *(num_of_philos + 1));
+    if (!philos)
+        return (NULL);
+    while (i < num_of_philos)
+    {
+        philos[i].philo_id = i;
+        philos[i].left_fork = i;
+        philos[i].right_fork = (i + 1) % num_of_philos;
+        philos[i].eat_num = 0;
+        philos[i].info = info;
+        i++;
+    }
+    return (philos);
 }

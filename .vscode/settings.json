@@ -3,6 +3,7 @@
         "__mutex_base": "c",
         "__tuple": "c",
         "array": "c",
-        "philo.h": "c"
+        "philo.h": "c",
+        "__locale": "c"
     }
 }

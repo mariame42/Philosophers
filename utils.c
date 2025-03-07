@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meid <meid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/30 13:26:50 by meid              #+#    #+#             */
-/*   Updated: 2025/02/25 20:51:32 by meid             ###   ########.fr       */
+/*   Created: 2025/03/07 16:47:12 by meid              #+#    #+#             */
+/*   Updated: 2025/03/07 16:48:15 by meid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "philo.h"
 
-void	*ft_calloc(size_t count, size_t size)
+unsigned long long current_time(void)
 {
-	void	*arr;
-	size_t	max_size;
+    struct timeval time;
 
-	max_size = count * size;
-	if (size && max_size / size != count)
-		return (NULL);
-	arr = (void *)malloc(max_size);
-	if (!(arr))
-		return (NULL);
-	ft_bzero(arr, (max_size));
-	return (arr);
+    if (gettimeofday(&time, NULL) != 0)
+        return 0;
+    return (time.tv_sec * 1000ULL + time.tv_usec / 1000ULL);
 }

@@ -6,11 +6,16 @@
 /*   By: meid <meid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 14:18:26 by meid              #+#    #+#             */
-/*   Updated: 2025/02/25 18:59:22 by meid             ###   ########.fr       */
+/*   Updated: 2025/03/07 17:24:15 by meid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void print_philo_status(unsigned long long time, int philo_num, char *msg)
+{
+    return(printf("\033[34min %llu ms %d is \033[00m", current_time() - time, philo_num), print_emoji(msg));
+}
 
 void print_with_color_2(char *msg, char *color)
 {
@@ -89,6 +94,18 @@ void print_info(t_info *info)
         print_with_color("info->number_of_times_each_philosopher_must_eat", "green");
         num = ft_itoa(info->number_of_times_each_philosopher_must_eat);
         print_with_color(num, "green");
+    }
+    int i = 0;
+    print_with_color("....................................", "green");
+    while (i < info->number_of_philosophers)
+    {
+        printf("lol");
+        printf("info->philos[i].philo_id: %d\n", info->philos[i].philo_id);
+		printf("info->philos[i].left_fork: %d\n", info->philos[i].left_fork);
+		printf("info->philos[i].right_fork: %d\n", info->philos[i].right_fork);
+		printf("info->philos[i].eat_num: %d\n", info->philos[i].eat_num);
+        print_with_color("....................................", "green");
+        i++;
     }
 }
 
