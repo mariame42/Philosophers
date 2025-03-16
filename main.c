@@ -6,7 +6,7 @@
 /*   By: meid <meid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 14:02:01 by meid              #+#    #+#             */
-/*   Updated: 2025/03/07 17:05:52 by meid             ###   ########.fr       */
+/*   Updated: 2025/03/15 10:26:17 by meid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,20 @@ t_info fill_some_info(int ac, char **av)
        i.number_of_times_each_philosopher_must_eat = ft_atoi(av[5]);
     else
         i.number_of_times_each_philosopher_must_eat = -1;
-    i.forks = make_neutral_array(i.number_of_philosophers, 0);
-    i.pihlo_id = make_pihlo_array(i.number_of_philosophers, 0);
-    i.state_tracking = make_neutral_array(i.number_of_philosophers, 0);
+    i.forks = make_pihlo_array(i.number_of_philosophers, 0);
+    // i.state_tracking = make_neutral_array(i.number_of_philosophers, 0);
     i.th = NULL;
-    i.mutex = make_mutex_array(i.number_of_philosophers, 0);
+    i.fork_mutex = make_mutex_array(i.number_of_philosophers, 0);
+	pthread_mutex_init(&i.eat_mutex, NULL);
+	pthread_mutex_init(&i.print_mutex, NULL);
+	pthread_mutex_init(&i.death_mutex, NULL);
     i.i = 0;
     print_array(i.forks, 0);
-    print_array(i.pihlo_id, 0);
-    print_array(i.state_tracking, 0);
+    // print_array(i.state_tracking, 0);
     i.philos = philo_struct_array(&i, i.number_of_philosophers, 0);
     i.first_time = current_time();
+    i.not_dead = true;
     return (i);
-    
 }
 
 int main(int ac, char **av)
