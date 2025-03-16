@@ -6,7 +6,7 @@
 /*   By: meid <meid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:09:19 by meid              #+#    #+#             */
-/*   Updated: 2025/02/14 17:01:19 by meid             ###   ########.fr       */
+/*   Updated: 2025/03/16 12:36:10 by meid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,25 @@ int	ft_atoi(const char *str)
 	if (res >= __LONG_LONG_MAX__ && sign != -1)
 		return (-1);
 	return (sign * (int)res);
+}
+
+unsigned long long	ascii_to_ull(const char *str)
+{
+	unsigned long long	result;
+
+	result = 0;
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '+')
+		str++;
+	if (*str < '0' || *str > '9')
+		return (0);
+	while (*str >= '0' && *str <= '9')
+	{
+		if (result > (ULLONG_MAX - (*str - '0')) / 10)
+			return (0);
+		result = result * 10 + (*str - '0');
+		str++;
+	}
+	return (result);
 }

@@ -71,7 +71,12 @@ BLUE = \033[0;34m
 YELLOW = \033[0;33m
 RESET = \033[0m
 
-SRC = main.c print.c parsing.c clean.c array_create.c utils.c philos_act.c philos_life.c
+PHILO = philo_life
+INFO = info_struct
+UTILS = utils_file
+SRC = main.c $(INFO)/args_check.c $(INFO)/create_arrays.c $(INFO)/fill_info.c \
+      $(UTILS)/clean.c $(UTILS)/print.c $(UTILS)/utils.c \
+      $(PHILO)/philo_act.c $(PHILO)/philo.c
 
 OBJ_DIR = obj
 OBJ_FILES = $(SRC:%.c=$(OBJ_DIR)/%.o)
@@ -90,7 +95,7 @@ $(LIBFT):
 	@make all -C libft
 
 $(OBJ_DIR)/%.o: %.c
-	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

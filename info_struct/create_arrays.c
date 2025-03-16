@@ -1,37 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   array_create.c                                     :+:      :+:    :+:   */
+/*   create_arrays.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meid <meid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 19:39:42 by meid              #+#    #+#             */
-/*   Updated: 2025/03/15 10:15:24 by meid             ###   ########.fr       */
+/*   Updated: 2025/03/16 12:35:17 by meid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../philo.h"
 
-int *make_neutral_array(int philo_num, int i)
+unsigned long long *make_pihlo_array(unsigned long long philo_num, unsigned long long i)
 {
-    int *array;
+    unsigned long long *array;
 
-    array = malloc(sizeof(int) * philo_num);
-    if (!array)
-        return (NULL);
-    while (i < philo_num)
-    {
-        array[i] = -1;   
-        i++;
-    }
-    return (array);
-}
-
-int *make_pihlo_array(int philo_num, int i)
-{
-    int *array;
-
-    array = malloc(sizeof(int) * philo_num);
+    array = malloc(sizeof(unsigned long long) * philo_num);
     if (!array)
         return (NULL);
     while (i < philo_num)
@@ -72,10 +57,9 @@ t_philo *philo_struct_array(t_info *info, int num_of_philos, int i)
         philos[i].philo_id = i + 1;
         philos[i].left_fork = i;
         philos[i].right_fork = (i + 1) % num_of_philos;
-        philos[i].eat_num = 0;
+        philos[i].eat_times = 0;
         philos[i].p_info = info;
-        // philos[i].is_it_dead = 0;
-        philos[i].last_eat = 0;
+        philos[i].last_eat = current_time_ms();
         i++;
     }
     return (philos);

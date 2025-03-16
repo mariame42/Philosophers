@@ -6,7 +6,7 @@
 /*   By: meid <meid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 17:06:14 by meid              #+#    #+#             */
-/*   Updated: 2025/02/14 16:39:12 by meid             ###   ########.fr       */
+/*   Updated: 2025/03/16 10:55:26 by meid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	}
 	return (0);
 }
-
 
 int	ft_strcmp(const char *s1, const char *s2)
 {
