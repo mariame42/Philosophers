@@ -6,7 +6,7 @@
 /*   By: meid <meid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 11:10:09 by meid              #+#    #+#             */
-/*   Updated: 2025/03/16 15:42:38 by meid             ###   ########.fr       */
+/*   Updated: 2025/03/18 10:00:16 by meid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 // libraries
 # include "libft/libft.h"
+# include <pthread.h>  // pthread_create, pthread_detach, pthread_join,
 # include <stdbool.h>  //bool
 # include <stdio.h>    // printf
 # include <stdlib.h>   // malloc, free
 # include <string.h>   // memset
 # include <sys/time.h> // gettimeofday
 # include <unistd.h>   // write, usleep
-# include <pthread.h>  // pthread_create, pthread_detach, pthread_join,
 // pthread_mutex_init, pthread_mutex_destroy, pthread_mutex_lock,
 // pthread_mutex_unlock
 
@@ -75,39 +75,42 @@ typedef struct s_philos
 //---------------------------info_struct--------------------------------//
 
 //---------------------args_check.c---------------------//
-int					args_check(int ac, char **av, int i, int j);
+int						args_check(int ac, char **av, int i, int j);
 
 //---------------------fill_info.c---------------------//
-int					fill_some_info(t_info *i, int ac, char **av);
+int						fill_some_info(t_info *i, int ac, char **av);
 
 //---------------------create_arrays.c---------------------//
-unsigned long long 	*make_pihlo_array(unsigned long long philo_num, unsigned long long i);
-pthread_mutex_t 	*make_mutex_array(int philo_num, int i);
-t_philo 			*philo_struct_array(t_info *info, int num_of_philos, int i);
+unsigned long long		*make_pihlo_array(unsigned long long philo_num,
+							unsigned long long i);
+pthread_mutex_t			*make_mutex_array(int philo_num, int i);
+t_philo					*philo_struct_array(t_info *info, int num_of_philos,
+							int i);
 
 //---------------------------philo_life--------------------------------//
 
 //---------------------philo.c---------------------//
-int					philo_life_circle(t_info *info, unsigned long long i);
-void				check_order(t_philo *philo, int *first, int *next);
+int						philo_life_circle(t_info *info, unsigned long long i);
+void					check_order(t_philo *philo, int *first, int *next);
 
 //---------------------philo_act.c---------------------//
-int					eating(t_philo *philo, int first, int next);
-int					sleeping(t_philo *philo);
-int					thinking(t_philo *philo);
-void				philo_died(t_info *info, int i, int flag);
+int						eating(t_philo *philo, int first, int next);
+int						sleeping(t_philo *philo);
+int						thinking(t_philo *philo);
+void					philo_died(t_info *info, int i, int flag);
 
 //---------------------------utils_file--------------------------------//
 
 //---------------------utils.c---------------------//
-unsigned long long	current_time_ms(void);
-int					accurate_usleep(unsigned long long time, t_philo *philo);
-int					check_death(t_info *info);
+unsigned long long		current_time_ms(void);
+int						accurate_usleep(unsigned long long time,
+							t_philo *philo);
+int						check_death(t_info *info);
 
 //---------------------clean.c---------------------//
-void				clean_up(t_info *info, int flag);
+void					clean_up(t_info *info, int flag);
 
 //---------------------print.c---------------------//
-int					philo_status(t_philo *philo, char *msg);
+int						philo_status(t_philo *philo, char *msg);
 
 #endif
