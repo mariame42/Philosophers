@@ -3,7 +3,7 @@ BONUS = philo_bonus
 HEADER = philo.h
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g3
+CFLAGS = -Wall -Werror -Wextra
 AR = ar -rcs
 LIBFT = libft/libft.a
 

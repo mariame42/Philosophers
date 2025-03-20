@@ -6,7 +6,7 @@
 /*   By: meid <meid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 11:10:09 by meid              #+#    #+#             */
-/*   Updated: 2025/03/18 10:00:16 by meid             ###   ########.fr       */
+/*   Updated: 2025/03/20 11:45:58 by meid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@
 # define RESET "\033[0m"
 
 // mode
-# define EAT "is eating 🍜 🍟 🍔"
-# define FORK "has taken a fork 🍴"
-# define DIE "died 💀"
-# define SLEEP "is sleeping 😴"
-# define THINK "is thinking 👩‍🏫"
+# define EAT "is eating"
+# define FORK "has taken a fork"
+# define DIE "died"
+# define SLEEP "is sleeping"
+# define THINK "is thinking"
 
 // structs
 struct	s_philos;

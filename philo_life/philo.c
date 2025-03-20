@@ -6,25 +6,11 @@
 /*   By: meid <meid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 15:33:42 by meid              #+#    #+#             */
-/*   Updated: 2025/03/18 16:36:24 by meid             ###   ########.fr       */
+/*   Updated: 2025/03/20 12:59:33 by meid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
-
-void	check_order(t_philo *philo, int *first, int *next)
-{
-	if (philo->left_fork < philo->right_fork)
-	{
-		*first = philo->left_fork;
-		*next = philo->right_fork;
-	}
-	else
-	{
-		*next = philo->left_fork;
-		*first = philo->right_fork;
-	}
-}
 
 bool	is_forks_available(t_philo *philo, int *first, int *next)
 {
@@ -33,12 +19,10 @@ bool	is_forks_available(t_philo *philo, int *first, int *next)
 
 	check_order(philo, first, next);
 	pthread_mutex_lock(&philo->p_info->fork_mutex[*first]);
-	// printf("id: %llu\n", philo->philo_id);
 	first_id = philo->p_info->forks[*first];
 	pthread_mutex_unlock(&philo->p_info->fork_mutex[*first]);
 	pthread_mutex_lock(&philo->p_info->fork_mutex[*next]);
 	next_id = philo->p_info->forks[*next];
-	// printf("id : %llu , f: %llu n: %llu \n", philo->philo_id, first_id, next_id);
 	pthread_mutex_unlock(&philo->p_info->fork_mutex[*next]);
 	return (first_id != philo->philo_id && next_id != philo->philo_id);
 }
@@ -52,17 +36,10 @@ void	*philofunction(void *data)
 	current = (t_philo *)data;
 	while (1)
 	{
-		// printf("iddddd : %llu\n", current->philo_id);
 		pthread_mutex_lock(&current->p_info->death_mutex);
 		if (!current->p_info->not_dead)
-		{
-			// printf("Philosopher %llu stopping: detected death\n",
-			// 	current->philo_id);
-			pthread_mutex_unlock(&current->p_info->death_mutex);
-			return (NULL);
-		}
+			return (pthread_mutex_unlock(&current->p_info->death_mutex), NULL);
 		pthread_mutex_unlock(&current->p_info->death_mutex);
-		// printf("iddddd : %llu\n", current->philo_id);
 		if (is_forks_available(current, &first, &next))
 		{
 			if (eating(current, first, next))
@@ -103,33 +80,18 @@ void	*death_checker(void *info)
 		{
 			pthread_mutex_lock(&current->eat_mutex);
 			if (current->minimum_eat > 0 && check_eats(current))
-			{
-				philo_died(current, i, 1);
-				pthread_mutex_unlock(&current->eat_mutex);
-				printf("Death detected: Exiting death_checker\n");
-				return (NULL);
-			}
+				return (philo_died(current, i, 1),
+					pthread_mutex_unlock(&current->eat_mutex), NULL);
 			if (current_time_ms() > current->philos[i].last_eat
-				+ current->time_to_die + 10)
-			{
-				// printf("--------c_t-%llu----l_e- %llu -----t_d- %llu ----s- %llu\n", current_time_ms(), current->philos[i].last_eat, current->time_to_die, current->philos[i].last_eat + current->time_to_die);
-				philo_died(current, i, 2);
-				pthread_mutex_unlock(&current->eat_mutex);
-				// printf("Death detected: Exiting death_checker\n");
-				return (NULL);
-			}
+				+ current->time_to_die)
+				return (philo_died(current, i, 2),
+					pthread_mutex_unlock(&current->eat_mutex), NULL);
 			pthread_mutex_unlock(&current->eat_mutex);
 			i++;
 		}
 	}
 	return (NULL);
 }
-// printf("%llu %llu %llu %llu\n",
-// current_time_ms() ,current->philos[i].last_eat, current->time_to_die,
-// current->philos[i].last_eat + current->time_to_die);
-// printf("%llu %llu %llu %llu\n",
-// current_time_ms() ,current->philos[i].last_eat, current->time_to_die,
-// current->philos[i].last_eat + current->time_to_die);
 
 int	philo_life_circle(t_info *info, unsigned long long i)
 {
@@ -139,15 +101,11 @@ int	philo_life_circle(t_info *info, unsigned long long i)
 	info->th = malloc(sizeof(pthread_t) * info->philos_num);
 	if (!info->th)
 		return (1);
-	info->checker = malloc(sizeof(pthread_t));
-	if (!info->checker)
-		return (1);
 	while (i < info->philos_num)
 	{
 		if (pthread_create(info->th + i, NULL, &philofunction,
 				&info->philos[i]) != 0)
 			return (1);
-		printf("Thread %llu has started\n", i);
 		i++;
 	}
 	if (pthread_create(&info->checker, NULL, &death_checker, info) != 0)

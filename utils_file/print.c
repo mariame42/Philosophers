@@ -6,7 +6,7 @@
 /*   By: meid <meid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 13:04:38 by meid              #+#    #+#             */
-/*   Updated: 2025/03/18 09:54:33 by meid             ###   ########.fr       */
+/*   Updated: 2025/03/20 11:50:36 by meid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@ int	philo_status(t_philo *philo, char *msg)
 	time = current_time_ms() - philo->p_info->begin_time;
 	pthread_mutex_lock(&philo->p_info->print_mutex);
 	if (ft_strcmp(msg, "die"))
-		printf("%s%llu %llu %s %s\n", BLUE, time, philo->philo_id, DIE, RESET);
+		printf("%llu %llu %s\n", time, philo->philo_id, DIE);
 	if (check_death(philo->p_info) == 0)
 		return (pthread_mutex_unlock(&philo->p_info->print_mutex), 1);
 	if (ft_strcmp(msg, "sleep"))
-		printf("%s%llu %llu %s %s\n", BLUE, time, philo->philo_id, SLEEP,
-			RESET);
+		printf("%llu %llu %s\n", time, philo->philo_id, SLEEP);
 	if (ft_strcmp(msg, "eat"))
-		printf("%s%llu %llu %s %s\n", BLUE, time, philo->philo_id, EAT, RESET);
+		printf("%llu %llu %s\n", time, philo->philo_id, EAT);
 	if (ft_strcmp(msg, "think"))
-		printf("%s%llu %llu %s %s\n", BLUE, time, philo->philo_id, THINK,
-			RESET);
+		printf("%llu %llu %s\n", time, philo->philo_id, THINK);
+	if (ft_strcmp(msg, "fork"))
+		printf("%llu %llu %s\n", time, philo->philo_id, FORK);
 	pthread_mutex_unlock(&philo->p_info->print_mutex);
 	return (0);
 }

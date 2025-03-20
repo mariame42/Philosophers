@@ -6,7 +6,7 @@
 /*   By: meid <meid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 12:13:26 by meid              #+#    #+#             */
-/*   Updated: 2025/03/18 09:56:25 by meid             ###   ########.fr       */
+/*   Updated: 2025/03/20 11:59:58 by meid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	threads_and_mutix(t_info *i)
 {
 	i->philos = philo_struct_array(i, i->philos_num, 0);
 	i->th = NULL;
-	i->checker = NULL;
 	i->fork_mutex = make_mutex_array(i->philos_num, 0);
 	pthread_mutex_init(&i->eat_mutex, NULL);
 	pthread_mutex_init(&i->print_mutex, NULL);
